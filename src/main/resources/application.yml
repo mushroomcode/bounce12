@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: 1234567890
+    url: jdbc:mysql://localhost:3306/我要变强?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+  aop:
+    proxy-target-class: true
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+mybatis:
+  mapper-locations: classpath:xml/*Mapper.xml
+  type-aliases-package: com.Entity.Impl
+  config-location: classpath:xml/mybatis-config.xml
+
