@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Create by Joyyue sheting on 2020/2/6
+ * Create by Joyyue sheting on 2018/8/25
  */
 @Repository
 public interface HunterMapper {
