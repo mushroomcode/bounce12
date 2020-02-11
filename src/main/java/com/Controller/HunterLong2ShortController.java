@@ -8,13 +8,14 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 //import lombok.extern.slf4j.Slf4j;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
  * 实现重定向，短链接服务
- * Create by Joyyue sheting on 2020/2/9
+ * Create by Joyyue sheting on 2018/8/25
  */
 
 @Controller
@@ -24,7 +25,7 @@ public class HunterLong2ShortController {
     @Autowired
     StringRedisTemplate redisTemplate;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public String getShortUrl(@PathVariable String id) {
         String url = redisTemplate.opsForValue().get(id);
@@ -50,10 +51,49 @@ public class HunterLong2ShortController {
         return "redirect:/hunter/index/realweb?parameter=coming";
     }
 
+    @GetMapping(value = "/access/redirect")
+    public String redirect2(HttpServletResponse response) {
+        try {
+            response.sendRedirect("/hunter/index/realweb?parameter=coming");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            return "";
+        }
+    }
+
+    /**
+     * 重定向后的地址
+     * @param request
+     * @return
+     */
     @ResponseBody
     @GetMapping(value = "/index/realweb")
     public String real(HttpServletRequest request) {
         return "redirect happened: " + JSON.toJSONString(request.getParameterMap());
+    }
+
+
+    /**
+     * 转发后响应的方法，但是不会显示此URL
+     * @return
+     */
+    @RequestMapping("/index/forward")
+    @ResponseBody
+    public String toForward() {
+        return "this, is the forward, not redirect!!";
+    }
+
+    /**
+     * 转发，和转发后的地址一样
+     * @param request
+     * @return
+     */
+    //    @ResponseBody
+    @GetMapping(value = "/forward")
+    public String requestForward(HttpServletRequest request) {
+        return "forward:/hunter/index/forward";
     }
 
 }
