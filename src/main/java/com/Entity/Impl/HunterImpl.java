@@ -3,7 +3,7 @@ package com.Entity.Impl;
 import java.io.Serializable;
 
 /**
- * Create by Joyyue sheting on 2020/2/6
+ * Create by Joyyue sheting on 2018/8/25
  */
 public class HunterImpl implements Serializable {
 
