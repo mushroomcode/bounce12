@@ -15,6 +15,10 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  security:
+    user:
+      password: uc0079
+      name: xiaoguanyue
   mvc:
     view:
       prefix: /
@@ -23,4 +27,5 @@ mybatis:
   mapper-locations: classpath:xml/*Mapper.xml
   type-aliases-package: com.Entity.Impl
   config-location: classpath:xml/mybatis-config.xml
+
 
