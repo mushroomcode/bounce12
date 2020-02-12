@@ -4,6 +4,8 @@ import com.Entity.Impl.HunterImpl;
 import com.Service.HunterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Max;
@@ -12,7 +14,7 @@ import java.util.List;
 /**
  * Create by Joyyue sheting on 2018/8/25
  */
-
+@Profile("dev")
 @RestController
 public class HunterController {
 
