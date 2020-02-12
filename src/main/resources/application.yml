@@ -23,6 +23,8 @@ spring:
     view:
       prefix: /
       suffix: .html
+  profiles:
+    active: dev
 mybatis:
   mapper-locations: classpath:xml/*Mapper.xml
   type-aliases-package: com.Entity.Impl
