@@ -1,5 +1,7 @@
 package com.Controller;
 
+import com.Bean.CustomProtocol;
+import com.Bean.Introducer;
 import com.alibaba.fastjson.JSON;
 import com.google.common.hash.Hashing;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -7,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-//import lombok.extern.slf4j.Slf4j;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+
 
 /**
  * 实现重定向，短链接服务
@@ -26,6 +27,9 @@ public class HunterLong2ShortController {
 
     @Autowired
     StringRedisTemplate redisTemplate;
+
+    @Autowired
+    CustomProtocol cp;
 
     @GetMapping(value = "/{id}")
     @ResponseBody
@@ -49,8 +53,13 @@ public class HunterLong2ShortController {
     }
 
     @GetMapping(value = "/access/web")
+    @ResponseBody
     public String redirect() {
-        return "redirect:/hunter/index/realweb?parameter=coming";
+        System.out.println(cp.getContent());
+        Introducer int1 = (Introducer) cp;
+        int1.printLogs();
+        return cp.getContent();
+//        return "redirect:/hunter/index/realweb?parameter=coming";
     }
 
     @GetMapping(value = "/access/redirect")
@@ -111,5 +120,4 @@ public class HunterLong2ShortController {
     }
 
 }
-
 
