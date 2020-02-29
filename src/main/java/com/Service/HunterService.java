@@ -5,6 +5,7 @@ import com.Mapper.HunterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,20 @@ public class HunterService {
 
     public List<HunterImpl> queryAll() {
         return hunterMapper.queryAll();
+    }
+
+
+    @Transactional
+    public void updateTrans() {
+        return ;
+    }
+
+    @Transactional
+    public void queryTrans() {
+        List<HunterImpl> list = hunterMapper.queryAll();
+        for(int i = 0;i < list.size();i += 1) {
+            System.out.println(list.get(i).getHunterID() + ": " +list.get(i).getHunterName());
+        }
     }
 
 }
